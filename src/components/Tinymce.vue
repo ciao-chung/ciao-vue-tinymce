@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="babel">
 import 'tinymce/tinymce'
 import 'tinymce/themes/modern/theme'
 import 'tinymce/plugins/paste/plugin'
