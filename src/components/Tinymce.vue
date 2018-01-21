@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script lang="babel">
+<script>
 import 'tinymce/tinymce'
 import 'tinymce/themes/modern/theme'
 import 'tinymce/plugins/paste/plugin'
@@ -80,9 +80,7 @@ export default {
 }
 </script>
 
-<style src="tinymce/skins/lightgray/skin.min.css"></style>
-<style src="tinymce/skins/lightgray/content.min.css"></style>
 <style lang="sass" type="text/sass" scoped>
 div[ciao-vue-tinymce]
-
+  padding: 0
 </style>
