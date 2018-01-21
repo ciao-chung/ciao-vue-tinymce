@@ -4,7 +4,6 @@
   "description": "frontend",
   "author": "Ciao <ciao0958@gmail.com>",
   "private": true,
-  "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --watch --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",

@@ -16,6 +16,7 @@
       <Tinymce
         :language="language"
         :language_url="language_url"
+        :photoUploadRequest="photoUploadRequest"
         v-model="data"/>
     </div>
   </div>
@@ -23,7 +24,6 @@
 
 <script>
 import Tinymce from 'src/../../index.js'
-// import Tinymce from 'src/../index.js'
 export default {
   data: function() {
     return {
@@ -37,6 +37,26 @@ export default {
     },
     language_url: function() {
       return `/static/langs/${this.locale}.js`
+    },
+    photoUploadRequest: function(url, data, onProgress = null) {
+      return function(url, data, onProgress) {
+        return new Promise(resolve => {
+          if(onProgress)
+            for(let i=1; i<=5; i++) {
+              ((i) => {
+                setTimeout(() => {
+                  onProgress({ loaded: 20 * i, total: 100 })
+                }, 200)
+              })(i)
+            }
+
+          setTimeout(() => {
+            resolve({
+              url: 'https://vuejs.org/images/logo.png',
+            })
+          }, 1000)
+        })
+      }
     },
   },
   components: {

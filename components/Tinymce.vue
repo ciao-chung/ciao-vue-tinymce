@@ -39,7 +39,7 @@ export default {
       default: '',
     },
     photoUploadRequest: {
-      type: Promise,
+      type: Function,
       default: null,
     },
     value: {
@@ -71,13 +71,27 @@ export default {
         toolbar: 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen',
         menubar: false,
         setup: editor => {
-          editor.on('blur', () => this.$emit('input', editor.getContent()))
+          editor.on('blur', () => {
+            this.$emit('input', editor.getContent())
+            this.$emit('change', editor.getContent())
+          })
         }
       })
     },
     init: function() {
       this.destroy()
       this.setup()
+    },
+    onProgress: function(progress) {
+      console.warn('progress', progress)
+    },
+    uploadPhoto: async function() {
+      try {
+        const result = await this.photoUploadRequest('1', '2', this.onProgress)
+        console.log(result)
+      } catch (error) {
+        console.warn(error)
+      }
     },
   },
   computed: {
