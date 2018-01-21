@@ -42,6 +42,10 @@ export default {
       type: Promise,
       default: null,
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
   mounted: function() {
     this.init()
@@ -66,6 +70,9 @@ export default {
         ],
         toolbar: 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen',
         menubar: false,
+        setup: editor => {
+          editor.on('blur', () => this.$emit('input', editor.getContent()))
+        }
       })
     },
   },
@@ -75,6 +82,11 @@ export default {
     },
     editorSelector: function() {
       return `textarea[tinymce=${this.uuid}]`
+    },
+  },
+  watch: {
+    value: function() {
+      this.init()
     },
   },
 }
