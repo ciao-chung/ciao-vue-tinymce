@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Tinymce from 'components/Tinymce.vue'
+import Tinymce from 'src/../index.js'
 export default {
   components: {
     Tinymce,
