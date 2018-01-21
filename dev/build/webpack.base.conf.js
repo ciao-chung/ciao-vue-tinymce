@@ -28,6 +28,10 @@ module.exports = {
       'components': path.resolve(__dirname, '../src/components'),
       'resource': path.resolve(__dirname, '../src/resource'),
     },
+    modules: [
+      path.join(__dirname, '../../../node_modules'),
+      path.join(__dirname, '../node_modules'),
+    ],
   },
   module: {
     rules: [

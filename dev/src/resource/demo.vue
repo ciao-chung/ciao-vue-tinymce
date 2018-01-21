@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import Tinymce from 'src/../index.js'
+import Tinymce from 'src/../../index.js'
+// import Tinymce from 'src/../index.js'
 export default {
   data: function() {
     return {
