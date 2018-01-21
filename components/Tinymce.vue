@@ -1,6 +1,5 @@
 <template>
   <div ciao-vue-tinymce>
-    tinymce
     <textarea :tinymce="uuid"></textarea>
   </div>
 </template>

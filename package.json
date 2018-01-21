@@ -1,18 +1,25 @@
 {
-  "name": "frontend",
+  "name": "ciao-vue-tinymce",
   "version": "1.0.0",
-  "description": "frontend",
-  "author": "Ciao <ciao0958@gmail.com>",
-  "private": true,
+  "description": "A Tinymce Component For VueJS",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --watch --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e",
-    "build": "node build/build.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ciao-chung/ciao-vue-tinymce.git"
+  },
+  "keywords": [
+    "vuejs",
+    "tinymce"
+  ],
+  "author": "Ciao <ciao0958@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ciao-chung/ciao-vue-tinymce/issues"
+  },
+  "homepage": "https://github.com/ciao-chung/ciao-vue-tinymce#readme",
   "dependencies": {
     "tinymce": "^4.7.4",
     "uuid": "^3.2.1"
@@ -38,10 +45,5 @@
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  }
 }
