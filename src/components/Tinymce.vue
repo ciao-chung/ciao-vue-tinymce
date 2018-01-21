@@ -51,17 +51,17 @@ export default {
     this.init()
   },
   methods: {
-    init: function() {
-      tinymce.remove({
-        selector: this.editorSelector
-      })
-
+    destroy: function() {
+      tinymce.remove(this.editorSelector)
+    },
+    setup: function() {
       tinymce.init({
         selector: this.editorSelector,
         skin: false,
         min_height: 300,
         language: this.language,
         language_url: this.language_url,
+        destroy: true,
         plugins: [
           'advlist autolink lists link image charmap print preview anchor',
           'searchreplace visualblocks code fullscreen',
@@ -75,6 +75,10 @@ export default {
         }
       })
     },
+    init: function() {
+      this.destroy()
+      this.setup()
+    },
   },
   computed: {
     uuid: function() {
@@ -86,6 +90,9 @@ export default {
   },
   watch: {
     value: function() {
+      this.init()
+    },
+    language: function() {
       this.init()
     },
   },
