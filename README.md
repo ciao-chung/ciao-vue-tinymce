@@ -1,5 +1,7 @@
 # Ciao Vue Tinymce
 
+!()[https://github.com/ciao-chung/ciao-vue-tinymce/blob/master/static/photo/demo.gif]
+
 ## Feature
 
 * Easy for use just bind v-model
