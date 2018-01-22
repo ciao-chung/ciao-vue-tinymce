@@ -21,6 +21,10 @@ I will publish on npm
 
 ## Base Usage
 
+Just use **v-model** bind value
+
+When editor on blur will auto sync v-model value
+
 ```html
 <template>
   <div>
@@ -45,7 +49,7 @@ export default {
 
 ## Property
 
-### language (optional)
+### language
 
 > String
 
@@ -66,7 +70,7 @@ And set [language_url](https://www.tinymce.com/docs/configure/localization/#lang
 <Tinymce v-model="data" :lanuage="'zh_TW'" :language="http://foo.bar/static/langs/zh_TW.js" />
 ```
 
-### photoUploadRequest (optional)
+### photoUploadRequest
 
 > Function
 
@@ -121,7 +125,7 @@ And this json must been had **url** property
 }
 ```
 
-### photoUploadTag (optional)
+### photoUploadTag
 
 > Function
 
@@ -214,4 +218,60 @@ You can set progress as false
 
 ### uploadSuccess
 
+This event will be emitted when **photoUploadRequest** resolve(success) Promise
+
+And this event will pass upload response result as an argument
+
+**Example(Template)**
+```html
+<template>
+  <div>
+    <Tinymce
+      @uploadSuccess="onUploadSuccess"
+      :photoUploadRequest="uploadApi"
+      :photoUploadTag="resposneImage"
+      v-model="data"/>
+  </div>
+</template>
+```
+
+**Example(Script)**
+```javascript
+export default {
+  methods: {
+    onUploadSuccess: function(data) {
+      // TODO
+    }
+  },
+}
+```
+
 ### uploadFail
+
+This event will be emitted when **photoUploadRequest** reject(error) Promise
+
+And this event will pass upload response error as an argument
+
+**Example(Template)**
+```html
+<template>
+  <div>
+    <Tinymce
+      @uploadFail="uploadFail"
+      :photoUploadRequest="uploadApi"
+      :photoUploadTag="resposneImage"
+      v-model="data"/>
+  </div>
+</template>
+```
+
+**Example(Script)**
+```javascript
+export default {
+  methods: {
+    uploadFail: function(error) {
+      // TODO
+    }
+  },
+}
+```
