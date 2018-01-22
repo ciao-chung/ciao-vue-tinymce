@@ -9,6 +9,10 @@
 * Can be photo upload and custom uploaded image tag
 * Can catch photo upload Event
 
+## Prerequisites
+
+* sass-loader 
+
 ## Installation
 
 > yarn add git+https://github.com/ciao-chung/ciao-vue-tinymce.git
@@ -215,6 +219,58 @@ If you wanna hide progress bar
 You can set progress as false 
 
 ## Event
+
+### blur
+
+This event will be emitted when editor on blur
+
+And this event will pass editor content as an argument
+
+**Example(Template)**
+```html
+<template>
+  <div>
+    <Tinymce @blur="onBlur" v-model="data"/>
+  </div>
+</template>
+```
+
+**Example(Script)**
+```javascript
+export default {
+  methods: {
+    onBlur: function(data) {
+      // TODO
+    }
+  },
+}
+```
+
+### change
+
+This event will be emitted when editor on change
+
+And this event will pass editor content as an argument
+
+**Example(Template)**
+```html
+<template>
+  <div>
+    <Tinymce @change="onChange" v-model="data"/>
+  </div>
+</template>
+```
+
+**Example(Script)**
+```javascript
+export default {
+  methods: {
+    onChange: function(data) {
+      // TODO
+    }
+  },
+}
+```
 
 ### uploadSuccess
 

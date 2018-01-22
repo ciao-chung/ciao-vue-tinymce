@@ -97,6 +97,10 @@ export default {
           this.editor = editor
           editor.on('blur', () => {
             this.$emit('input', editor.getContent())
+            this.$emit('blur', editor.getContent())
+          })
+
+          editor.on('change', () => {
             this.$emit('change', editor.getContent())
           })
 
