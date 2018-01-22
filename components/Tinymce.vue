@@ -1,6 +1,7 @@
 <template>
   <div ciao-vue-tinymce>
     <textarea :tinymce="uuid"></textarea>
+    <input type="file" v-if="hasFileBrowser">
   </div>
 </template>
 
@@ -28,6 +29,7 @@ import 'tinymce/plugins/insertdatetime/plugin'
 import 'tinymce/plugins/contextmenu/plugin'
 import 'tinymce/plugins/textcolor/plugin'
 import uuidV4 from 'uuid/v4'
+import $ from 'jquery'
 export default {
   props: {
     language: {
@@ -42,10 +44,19 @@ export default {
       type: Function,
       default: null,
     },
+    photoUploadTag: {
+      type: Function,
+      default: null,
+    },
     value: {
       type: String,
       default: '',
     },
+  },
+  data: function () {
+    return {
+      editor: null
+    }
   },
   mounted: function() {
     this.init()
@@ -55,6 +66,8 @@ export default {
       tinymce.remove(this.editorSelector)
     },
     setup: function() {
+      this.setupFileBrowser()
+
       tinymce.init({
         selector: this.editorSelector,
         skin: false,
@@ -68,13 +81,20 @@ export default {
           'insertdatetime media table contextmenu paste code table',
           'textcolor',
         ],
-        toolbar: 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen',
+        toolbar: 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen | photoUploadButton',
         menubar: false,
         setup: editor => {
+          this.editor = editor
           editor.on('blur', () => {
             this.$emit('input', editor.getContent())
             this.$emit('change', editor.getContent())
           })
+
+          if(this.hasFileBrowser)
+            editor.addButton('photoUploadButton', {
+              icon: 'upload',
+              onclick: () => this.fileBrowser.click()
+            })
         }
       })
     },
@@ -82,16 +102,35 @@ export default {
       this.destroy()
       this.setup()
     },
+    setupFileBrowser: function () {
+      if(!this.hasFileBrowser) return
+
+      this.fileBrowser.change(event => {
+        if(event.target.files.length == 0) return
+        this.uploadPhoto(event.target.files[0])
+      })
+    },
     onProgress: function(progress) {
       console.warn('progress', progress)
     },
-    uploadPhoto: async function() {
+    uploadPhoto: async function(file) {
       try {
-        const result = await this.photoUploadRequest('1', '2', this.onProgress)
-        console.log(result)
+        const result = await this.photoUploadRequest(file, this.onProgress)
+        this.$emit('uploadSuccess', {
+          result: result,
+        })
+
+        this.appendImage(result)
       } catch (error) {
-        console.warn(error)
+        this.$emit('uploadFail', {
+          result: result,
+        })
       }
+    },
+    appendImage: function (result) {
+      let imageTag = `<img src="${result.url}" />`
+      if(this.photoUploadTag instanceof Function) imageTag = this.photoUploadTag(result)
+      this.editor.insertContent(imageTag)
     },
   },
   computed: {
@@ -100,6 +139,12 @@ export default {
     },
     editorSelector: function() {
       return `textarea[tinymce=${this.uuid}]`
+    },
+    fileBrowser: function () {
+      return $(this.$el).find('input[type="file"]')
+    },
+    hasFileBrowser: function () {
+      return !!this.photoUploadRequest
     },
   },
   watch: {
@@ -118,4 +163,6 @@ export default {
 <style lang="sass" type="text/sass" scoped>
 div[ciao-vue-tinymce]
   padding: 0
+  input[type="file"]
+    opacity: 0
 </style>

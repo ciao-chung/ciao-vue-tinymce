@@ -14,6 +14,9 @@
 
     <div class="tinymce-wrap">
       <Tinymce
+        @uploadSuccess="uploadSuccess"
+        @uploadFail="uploadFail"
+        :photoUploadTag="photoUploadTag"
         :language="language"
         :language_url="language_url"
         :photoUploadRequest="photoUploadRequest"
@@ -31,6 +34,17 @@ export default {
       locale: 'zh_TW',
     }
   },
+  methods: {
+    uploadSuccess: function (data) {
+      console.log('uploadSuccess', data)
+    },
+    uploadFail: function (error) {
+      console.warn('uploadFail', error)
+    },
+    photoUploadTag: function (result) {
+      return `<img src="${result.url}" class="img-responsive" />`
+    }
+  },
   computed: {
     language: function() {
       return this.locale
@@ -38,8 +52,8 @@ export default {
     language_url: function() {
       return `/static/langs/${this.locale}.js`
     },
-    photoUploadRequest: function(url, data, onProgress = null) {
-      return function(url, data, onProgress) {
+    photoUploadRequest: function(file, onProgress = null) {
+      return function(file, onProgress) {
         return new Promise(resolve => {
           if(onProgress)
             for(let i=1; i<=5; i++) {
