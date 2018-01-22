@@ -99,6 +99,7 @@ div[ciao-vue-tinymce="photo-upload"]
     opacity: 0
     width: 0
     height: 0
+    pointer-events: none
   .progress-wrap
     height: 5px
     .progress
