@@ -25,6 +25,9 @@ export default {
       type: Function,
       default: null,
     },
+    progress: {
+      type: Boolean,
+    },
   },
   data: function () {
     return {
@@ -53,6 +56,7 @@ export default {
       })
     },
     onProgress: function(progress) {
+      if(!this.progress) return
       this.progressPercentage = Math.floor(progress.loaded/progress.total*100)
     },
     uploadPhoto: async function(file) {
