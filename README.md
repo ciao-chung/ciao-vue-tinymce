@@ -1,5 +1,7 @@
 # Ciao Vue Tinymce
 
+> A Vue 2 Tinymce component
+
 ![](https://github.com/ciao-chung/ciao-vue-tinymce/blob/master/static/photo/demo.gif?raw=true)
 
 ## Feature
@@ -11,7 +13,8 @@
 
 ## Prerequisites
 
-* sass-loader 
+* Vue app has babel-loader
+* Vue app has sass-loader 
 
 ## Installation
 
