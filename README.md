@@ -195,3 +195,21 @@ export default {
 }
 </script>
 ```
+
+### progress
+
+> Boolean
+
+If **photoUploadRequest** has been setup
+
+By default, when photo start upload will show bootstrap progress bar
+
+If you wanna hide progress bar
+
+You can set progress as false 
+
+## Event
+
+### uploadSuccess
+
+### uploadFail

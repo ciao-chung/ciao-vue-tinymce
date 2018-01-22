@@ -1,27 +1,36 @@
 <template>
   <div data-role="demo">
-    <h1>Vue Tinymce</h1>
-    
-    <div>
-      <select v-model="locale">
-        <option value="zh_TW">Chinese</option>
-        <option value="en_CA">English</option>
-        <option value="ja">Japenese</option>
-      </select>
+    <h1>Ciao Vue Tinymce</h1>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="input-group">
+          <span class="input-group-addon">Language</span>
+
+          <select v-model="locale" class="form-control">
+            <option value="zh_TW">Chinese</option>
+            <option value="en_CA">English</option>
+            <option value="ja">Japenese</option>
+          </select>
+        </div>
+
+        <div class="tinymce-wrap">
+          <Tinymce
+            @uploadSuccess="uploadSuccess"
+            @uploadFail="uploadFail"
+            :photoUploadTag="photoUploadTag"
+            :language="language"
+            :language_url="language_url"
+            :photoUploadRequest="photoUploadRequest"
+            v-model="data"/>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="result" v-html="data"></div>
+      </div>
     </div>
 
-    <div class="result" v-html="data"></div>
-
-    <div class="tinymce-wrap">
-      <Tinymce
-        @uploadSuccess="uploadSuccess"
-        @uploadFail="uploadFail"
-        :photoUploadTag="photoUploadTag"
-        :language="language"
-        :language_url="language_url"
-        :photoUploadRequest="photoUploadRequest"
-        v-model="data"/>
-    </div>
   </div>
 </template>
 

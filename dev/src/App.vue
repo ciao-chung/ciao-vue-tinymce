@@ -10,4 +10,7 @@ export default {
 }
 </script>
 
-<style lang="sass" type="text/sass"></style>
+<style lang="sass" type="text/sass">
+#app
+  padding: 10px
+</style>

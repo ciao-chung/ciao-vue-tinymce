@@ -2,6 +2,7 @@
   <div ciao-vue-tinymce>
     <PhotoUpload
       ref="photoUpload"
+      @update="update"
       :photoUploadTag="photoUploadTag"
       :photoUploadRequest="photoUploadRequest"
       :hasFileBrowser="hasFileBrowser"
@@ -106,6 +107,9 @@ export default {
     init: function() {
       this.destroy()
       this.setup()
+    },
+    update: function () {
+      this.$emit('input', this.editor.getContent())
     },
   },
   computed: {

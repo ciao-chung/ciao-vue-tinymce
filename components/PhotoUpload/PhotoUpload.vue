@@ -76,12 +76,14 @@ export default {
       }
     },
     resetProgress: function () {
+      this.fileBrowser.val('')
       this.progressPercentage = 0
     },
     insertImageToEditor: function (result) {
       let imageTag = `<img src="${result.url}" />`
       if(this.photoUploadTag instanceof Function) imageTag = this.photoUploadTag(result)
       this.editor.insertContent(imageTag)
+      this.$emit('update')
     },
   },
   computed: {
