@@ -18,13 +18,11 @@
 
 ## Installation
 
-> yarn add git+https://github.com/ciao-chung/ciao-vue-tinymce.git
+> npm install ciao-vue-tinymce
 
-This is temporarily install way
+or yarn
 
-After I Finish First Version
-
-I will publish on npm
+> yarn add ciao-vue-tinymce
 
 ## Base Usage
 
