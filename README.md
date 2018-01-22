@@ -72,9 +72,11 @@ This property is a function type
 
 And it should return a **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)**
 
-Because in this way **Ciao Vue Tinymce** can make sure upload request is finished by use **[await](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/await)**
+Because **Ciao Vue Tinymce** can make sure upload request is finished via use **[await](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/await)** in this way
 
-In addition, this function should given a **file** argument
+
+
+In addition, this function must given a **file** argument
 
 Let request can send the file to upload
 
@@ -127,7 +129,7 @@ After upload photo
 
 For example, if upload response is **{ url: 'https://vuejs.org/images/logo.png' }**
 
-By default, **Ciao Vue Tinymce** will create default image tag **<img src="https://vuejs.org/images/logo.png" />**
+By default, **Ciao Vue Tinymce** will create default image tag **&lt;img src="https://vuejs.org/images/logo.png" /&gt;**
 
 If you want custom image tag
 
