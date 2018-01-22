@@ -1,6 +1,6 @@
 # Ciao Vue Tinymce
 
-!()[https://github.com/ciao-chung/ciao-vue-tinymce/blob/master/static/photo/demo.gif]
+![](https://github.com/ciao-chung/ciao-vue-tinymce/blob/master/static/photo/demo.gif?raw=true)
 
 ## Feature
 
