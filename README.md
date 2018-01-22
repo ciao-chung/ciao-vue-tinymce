@@ -13,8 +13,8 @@
 
 ## Prerequisites
 
-* Vue app has babel-loader
-* Vue app has sass-loader 
+* Vue app can load es6+
+* Vue app can load sass style 
 
 ## Installation
 
