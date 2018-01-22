@@ -18,6 +18,7 @@
           <Tinymce
             @uploadSuccess="uploadSuccess"
             @uploadFail="uploadFail"
+            :tools="tools"
             :photoUploadTag="photoUploadTag"
             :language="language"
             :language_url="language_url"
@@ -41,6 +42,13 @@ export default {
     return {
       data: null,
       locale: 'zh_TW',
+      tools: [
+        {
+          text: 'A',
+          icon: 'image',
+          onclick: (editor) => console.warn('onclick', editor)
+        }
+      ]
     }
   },
   methods: {

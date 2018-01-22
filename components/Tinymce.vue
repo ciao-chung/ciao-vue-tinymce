@@ -64,6 +64,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    tools: {
+      type: Array,
+      default: null,
+    },
   },
   data: function () {
     return {
@@ -91,7 +95,7 @@ export default {
           'insertdatetime media table contextmenu paste code table',
           'textcolor',
         ],
-        toolbar: 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen | photoUploadButton',
+        toolbar: this.toolbar,
         menubar: false,
         setup: editor => {
           this.editor = editor
@@ -105,6 +109,7 @@ export default {
           })
 
           if(this.hasFileBrowser) this.$refs.photoUpload.addTool(editor)
+          this.setupCustomToolbar()
         }
       })
     },
@@ -114,6 +119,16 @@ export default {
     },
     update: function () {
       this.$emit('input', this.editor.getContent())
+    },
+    setupCustomToolbar: function() {
+      if(!this.tools) return
+
+      for(const tool of this.tools) {
+        this.editor.addButton(tool.text, {
+          icon: tool.icon,
+          onclick: () => tool.onclick(this.editor),
+        })
+      }
     },
   },
   computed: {
@@ -125,6 +140,15 @@ export default {
     },
     hasFileBrowser: function () {
       return !!this.photoUploadRequest
+    },
+    toolbar: function () {
+      const default_toolbar = 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen | photoUploadButton'
+      if(!this.tools) return default_toolbar
+
+      let custom = ''
+      for(const tool of this.tools)
+        custom += tool.text
+      return `${default_toolbar} | ${custom}`
     },
   },
   watch: {
