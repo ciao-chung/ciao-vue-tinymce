@@ -1,6 +1,12 @@
 <template>
-  <div>
+  <div ciao-vue-tinymce="photo-upload">
     <input type="file" v-if="hasFileBrowser">
+
+    <div class="progress-wrap">
+      <div class="progress" v-if="progressPercentage > 0">
+        <div class="progress-bar progress-bar-success" :style="'width: '+progressPercentage+'%'"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,6 +29,7 @@ export default {
   data: function () {
     return {
       editor: null,
+      progressPercentage: 0,
     }
   },
   mounted: function () {
@@ -38,9 +45,6 @@ export default {
       })
     },
     init: function () {
-      this.setupFileBrowser()
-    },
-    setupFileBrowser: function () {
       if(!this.hasFileBrowser) return
 
       this.fileBrowser.change(event => {
@@ -49,7 +53,7 @@ export default {
       })
     },
     onProgress: function(progress) {
-      console.warn('progress', progress)
+      this.progressPercentage = Math.floor(progress.loaded/progress.total*100)
     },
     uploadPhoto: async function(file) {
       try {
@@ -58,14 +62,19 @@ export default {
           result: result,
         })
 
-        this.appendImage(result)
+        this.insertImageToEditor(result)
+        this.resetProgress()
       } catch (error) {
         this.$emit('uploadFail', {
           result: result,
         })
+        this.resetProgress()
       }
     },
-    appendImage: function (result) {
+    resetProgress: function () {
+      this.progressPercentage = 0
+    },
+    insertImageToEditor: function (result) {
       let imageTag = `<img src="${result.url}" />`
       if(this.photoUploadTag instanceof Function) imageTag = this.photoUploadTag(result)
       this.editor.insertContent(imageTag)
@@ -79,7 +88,16 @@ export default {
 }
 </script>
 
+<style src="bootstrap/dist/css/bootstrap.min.css"></style>
 <style lang="sass" type="text/sass" scoped>
-input[type="file"]
-  opacity: 0
+div[ciao-vue-tinymce="photo-upload"]
+  input[type="file"]
+    opacity: 0
+    width: 0
+    height: 0
+  .progress-wrap
+    height: 5px
+    .progress
+      padding: 0
+      margin: 0
 </style>

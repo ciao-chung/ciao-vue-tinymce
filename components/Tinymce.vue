@@ -2,7 +2,6 @@
   <div ciao-vue-tinymce>
     <PhotoUpload
       ref="photoUpload"
-      :editor="editor"
       :photoUploadTag="photoUploadTag"
       :photoUploadRequest="photoUploadRequest"
       :hasFileBrowser="hasFileBrowser"
