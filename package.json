@@ -1,6 +1,6 @@
 {
   "name": "ciao-vue-tinymce",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Tinymce Component For VueJS",
   "main": "index.js",
   "scripts": {
