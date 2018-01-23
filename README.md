@@ -54,6 +54,55 @@ export default {
 
 ## Property
 
+### tools
+
+> Array
+
+By set this property, you can add multiple custom buttons to tinymce
+
+Via set a callback function for **onclick** property
+
+You will been given a **editor** argument
+
+And use **tinymce editor instance**, by this **editor** argument
+
+**Example**
+
+```html
+<template>
+  <div>
+    <Tinymce v-model="data"/>
+  </div>
+</template>
+
+<script>
+import Tinymce from 'ciao-vue-tinymce'
+export default {
+  data: function() {
+    return {
+      data: null,
+      tools: [
+        {
+          text: 'foo',
+          icon: 'image',
+          onclick: this.onFooButtonClick,
+        },
+      ]
+    }
+  },
+  methods: {
+    onFooButtonClick: function(editor) {
+      // TODO
+      editor.insertContent('click foo button')
+    },
+  },
+  components: {
+    Tinymce,
+  },
+}
+</script>
+```
+
 ### language
 
 > String
