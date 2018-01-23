@@ -3,8 +3,8 @@
     <input type="file" v-if="hasFileBrowser">
 
     <div class="progress-wrap">
-      <div class="progress" v-if="progressPercentage > 0">
-        <div class="progress-bar progress-bar-success" :style="'width: '+progressPercentage+'%'"></div>
+      <div class="progress" v-if="progress > 0">
+        <div class="progress-bar progress-bar-success" :style="'width: '+progress+'%'"></div>
       </div>
     </div>
   </div>
@@ -25,14 +25,11 @@ export default {
       type: Function,
       default: null,
     },
-    progress: {
-      type: Boolean,
-    },
   },
   data: function () {
     return {
       editor: null,
-      progressPercentage: 0,
+      progress: 0,
     }
   },
   mounted: function () {
@@ -56,8 +53,7 @@ export default {
       })
     },
     onProgress: function(progress) {
-      if(!this.progress) return
-      this.progressPercentage = Math.floor(progress.loaded/progress.total*100)
+      this.progress = Math.floor(progress.loaded/progress.total*100)
     },
     uploadPhoto: async function(file) {
       try {
@@ -70,14 +66,14 @@ export default {
         this.resetProgress()
       } catch (error) {
         this.$emit('uploadFail', {
-          result: result,
+          result: error,
         })
         this.resetProgress()
       }
     },
     resetProgress: function () {
       this.fileBrowser.val('')
-      this.progressPercentage = 0
+      setTimeout(() => this.progress = 0, 1000)
     },
     insertImageToEditor: function (result) {
       let imageTag = `<img src="${result.url}" />`

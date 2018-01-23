@@ -37,6 +37,7 @@
 
 <script>
 import Tinymce from 'src/../../index.js'
+import $ from 'jquery'
 export default {
   data: function() {
     return {

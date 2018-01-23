@@ -6,7 +6,6 @@
       :photoUploadTag="photoUploadTag"
       :photoUploadRequest="photoUploadRequest"
       :hasFileBrowser="hasFileBrowser"
-      :progress="progress"
       />
 
     <textarea :tinymce="uuid"></textarea>
@@ -59,10 +58,6 @@ export default {
     value: {
       type: String,
       default: '',
-    },
-    progress: {
-      type: Boolean,
-      default: true,
     },
     tools: {
       type: Array,

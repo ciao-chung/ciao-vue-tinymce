@@ -87,7 +87,7 @@ Because **Ciao Vue Tinymce** can make sure upload request is finished via use **
 
 
 
-In addition, this function must given a **file** argument
+In addition, this function must given **file** and **onProgress** two argument
 
 Let request can send the file to upload
 
@@ -100,7 +100,7 @@ Let request can send the file to upload
 ```javascript
 export default {
   computed: {
-    uploadApi: function(file) {
+    uploadApi: function(file, onProgress) {
       return new Promise((resolve, reject) => {
         $.ajax({
           url: 'http://foo.bar/path/to/upload',
@@ -108,6 +108,43 @@ export default {
           processData: false,
           contentType: false,
           data: file,
+          success: (data) => { resolve(data) },
+          error: (error) => { reject(error) },
+        })
+      })
+    },
+  },
+}
+```
+
+This upload feature also support progress bar
+
+To enable progress feature
+
+Just add upload progress event listener
+
+And pass progress percentage to **onProgress** funciton
+
+**Example(Script)**
+```javascript
+export default {
+  computed: {
+    uploadApi: function(file, onProgress) {
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          url: 'http://foo.bar/path/to/upload',
+          jsonDataRequest: false,
+          processData: false,
+          contentType: false,
+          data: file,
+          xhr: () => {
+            let xhr = $.ajaxSettings.xhr()
+            xhr.upload.addEventListener('progress', (progress) => {
+              const percentage = Math.floor(100*(progress.loaded/progress.total))
+              return onProgress(percentage)
+            }, false)
+            return xhr
+          },
           success: (data) => { resolve(data) },
           error: (error) => { reject(error) },
         })
@@ -206,18 +243,6 @@ export default {
 }
 </script>
 ```
-
-### progress
-
-> Boolean
-
-If **photoUploadRequest** has been setup
-
-By default, when photo start upload will show bootstrap progress bar
-
-If you wanna hide progress bar
-
-You can set progress as false 
 
 ## Event
 
