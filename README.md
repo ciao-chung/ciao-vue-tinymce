@@ -308,6 +308,35 @@ If you want custom this filename
 
 You can config it by set this property
 
+### config
+
+This option allow you replace any default tinymce config
+
+You can set any tinymce setting
+
+**Example**
+
+```html
+<template>
+  <div>
+    <Tinymce :config="config" v-model="data"/>
+  </div>
+</template>
+
+<script>
+export default {
+  data: function() {
+   return {
+     data: null,
+     config: {
+       extended_valid_elements: 'img[width|height|id|class|src|uid|extension|version]',
+     },
+   } 
+  }
+}
+</script>
+```
+
 ## Event
 
 ### blur
