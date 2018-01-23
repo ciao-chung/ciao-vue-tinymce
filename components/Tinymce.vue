@@ -38,6 +38,7 @@ import 'tinymce/plugins/contextmenu/plugin'
 import 'tinymce/plugins/textcolor/plugin'
 import uuidV4 from 'uuid/v4'
 import PhotoUpload from './PhotoUpload/PhotoUpload.vue'
+import $ from 'jquery'
 export default {
   props: {
     language: {
@@ -68,6 +69,10 @@ export default {
       type: String,
       default: 'file',
     },
+    config: {
+      type: Object,
+      default: () => {},
+    },
   },
   data: function () {
     return {
@@ -78,11 +83,8 @@ export default {
     this.init()
   },
   methods: {
-    destroy: function() {
-      tinymce.remove(this.editorSelector)
-    },
-    setup: function() {
-      tinymce.init({
+    getDefaultConfig: function () {
+      return {
         selector: this.editorSelector,
         skin: false,
         min_height: 300,
@@ -111,7 +113,17 @@ export default {
           if(this.hasFileBrowser) this.$refs.photoUpload.addTool(editor)
           this.setupCustomToolbar()
         }
-      })
+      }
+    },
+    destroy: function() {
+      tinymce.remove(this.editorSelector)
+    },
+    setup: function() {
+      let config = $.extend({}, this.getDefaultConfig())
+      for(const property in this.config) {
+        config[property] = this.config[property]
+      }
+      tinymce.init(config)
     },
     init: function() {
       this.destroy()

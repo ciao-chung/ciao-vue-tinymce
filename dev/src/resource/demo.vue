@@ -18,6 +18,7 @@
           <Tinymce
             @uploadSuccess="uploadSuccess"
             @uploadFail="uploadFail"
+            :config="config"
             :tools="tools"
             :photoUploadTag="photoUploadTag"
             :language="language"
@@ -49,7 +50,10 @@ export default {
           icon: 'image',
           onclick: (editor) => console.warn('onclick', editor)
         }
-      ]
+      ],
+      config: {
+        extended_valid_elements: 'img[width|height|id|class|src|uid|extension|version]',
+      },
     }
   },
   methods: {
