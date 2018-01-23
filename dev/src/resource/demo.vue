@@ -45,7 +45,7 @@ export default {
       locale: 'zh_TW',
       tools: [
         {
-          text: 'A',
+          text: 'foo',
           icon: 'image',
           onclick: (editor) => console.warn('onclick', editor)
         }

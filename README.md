@@ -245,6 +245,20 @@ export default {
 </script>
 ```
 
+### formDataFilename
+
+> String
+
+By default that, upload **FormData** filename will be **file** as follow
+
+```javascript
+file.append('file', file)
+```
+
+If you want custom this filename
+
+You can config it by set this property
+
 ## Event
 
 ### blur

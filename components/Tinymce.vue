@@ -3,6 +3,7 @@
     <PhotoUpload
       ref="photoUpload"
       @update="update"
+      :formDataFilename="formDataFilename"
       :photoUploadTag="photoUploadTag"
       :photoUploadRequest="photoUploadRequest"
       :hasFileBrowser="hasFileBrowser"
@@ -62,6 +63,10 @@ export default {
     tools: {
       type: Array,
       default: null,
+    },
+    formDataFilename: {
+      type: String,
+      default: 'file',
     },
   },
   data: function () {

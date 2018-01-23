@@ -25,6 +25,10 @@ export default {
       type: Function,
       default: null,
     },
+    formDataFilename: {
+      type: String,
+      default: 'file',
+    },
   },
   data: function () {
     return {
@@ -50,7 +54,7 @@ export default {
       this.fileBrowser.change(event => {
         if(event.target.files.length == 0) return
         const file = new FormData()
-        file.append('file', event.target.files[0])
+        file.append(this.formDataFilename, event.target.files[0])
         this.uploadPhoto(file)
       })
     },
