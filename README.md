@@ -117,6 +117,7 @@ export default {
 }
 ```
 
+
 This upload feature also support progress bar
 
 To enable progress feature
@@ -154,7 +155,7 @@ export default {
 }
 ```
 
-If you don't custom **photoUploadTag** property
+If you don't want to custom **photoUploadTag** property
 
 Your upload photo response should be json format
 

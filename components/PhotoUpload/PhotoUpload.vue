@@ -49,7 +49,9 @@ export default {
 
       this.fileBrowser.change(event => {
         if(event.target.files.length == 0) return
-        this.uploadPhoto(event.target.files[0])
+        const file = new FormData()
+        file.append('file', event.target.files[0])
+        this.uploadPhoto(file)
       })
     },
     onProgress: function(progress) {
