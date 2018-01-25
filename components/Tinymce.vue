@@ -144,7 +144,7 @@
         }
       },
       setContent: function () {
-        if(typeof this.value != 'string') return
+        if(!this.value) return
         tinymce.get(this.uuid).setContent(this.value)
       }
     },
@@ -170,7 +170,6 @@
     },
     watch: {
       value: function() {
-        // this.init()
         this.setContent()
       },
       language: function() {
