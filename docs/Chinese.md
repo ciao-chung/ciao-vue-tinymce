@@ -64,7 +64,8 @@ export default {
 
 你將能得到一個**editor**參數
 
-並且利用這個**editor**參數才操作**tinymce編輯器實體**
+並且利用這個**editor**參數來操作**tinymce編輯器實體**
+
 
 **範例**
 
@@ -128,14 +129,14 @@ Tinymce的語言代碼可以參考[這裡](https://www.tinymce.com/docs/configur
 
 此屬性必須為Function格式
 
-而且必須回傳一個**[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)**
+而且必須回傳一個[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 因為這樣才能讓**Ciao Vue Tinymce**透過[await](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/await)的方式
 
 確認上傳圖片的請求已經完成
 
 
-此外, 這個function必須給予**file**這個參數
+此外, 這個function必須給予**file**及**onProgress**這兩個參數
 
 讓上傳請求能夠上傳檔案
 
@@ -148,7 +149,7 @@ Tinymce的語言代碼可以參考[這裡](https://www.tinymce.com/docs/configur
 ```javascript
 export default {
   computed: {
-    uploadApi: function(file) {
+    uploadApi: function(file, onProgress) {
       return new Promise((resolve, reject) => {
         $.ajax({
           url: 'http://foo.bar/path/to/upload',
@@ -165,16 +166,15 @@ export default {
 }
 ```
 
+此上傳功能也支援上傳進度條(Progress Bar)
 
-This upload feature also support progress bar
+如果要啟用顯示進度功能
 
-To enable progress feature
+只要在上傳請求中加入progress event listener
 
-Just add upload progress event listener
+並且傳入一個進度百分比的參數給**onProgress** funciton
 
-And pass progress percentage to **onProgress** funciton
-
-**Example(Script)**
+**範例(Script)**
 ```javascript
 export default {
   computed: {
@@ -227,7 +227,7 @@ export default {
 
 假設上傳的response為**{ url: 'https://vuejs.org/images/logo.png' }**
 
-在預設的狀況下, **Ciao Vue Tinymce**將會建立一個預設的圖片標籤**&lt;img src="https://vuejs.org/images/logo.png" /&gt;**
+在預設的狀況下, **Ciao Vue Tinymce**將會建立一個預設的圖片標籤&lt;img src="https://vuejs.org/images/logo.png" /&gt;
 
 如果你希望自訂這個標籤
 
@@ -397,7 +397,7 @@ export default {
 
 ### uploadSuccess
 
-這個事件將會在**photoUploadRequest**resolve Promise時(上傳成功時)被觸發
+這個事件將會在**photoUploadRequest** resolve Promise時(上傳成功時)被觸發
 
 此外這個事件還會傳遞一個為response的result參數
 
@@ -427,7 +427,7 @@ export default {
 
 ### uploadFail
 
-這個事件將會在**photoUploadRequest**reject Promise時(上傳失敗時)被觸發
+這個事件將會在**photoUploadRequest** reject Promise時(上傳失敗時)被觸發
 
 此外這個事件還會傳遞一個為response的error參數
 

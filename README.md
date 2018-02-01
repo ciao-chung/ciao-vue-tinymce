@@ -140,7 +140,7 @@ Because **Ciao Vue Tinymce** can make sure upload request is finished via use **
 
 
 
-In addition, this function must given **file** argument
+In addition, this function must given **file** and **onProgress** two argument
 
 Let request can send the file to upload
 
@@ -153,7 +153,7 @@ Let request can send the file to upload
 ```javascript
 export default {
   computed: {
-    uploadApi: function(file) {
+    uploadApi: function(file, onProgress) {
       return new Promise((resolve, reject) => {
         $.ajax({
           url: 'http://foo.bar/path/to/upload',
