@@ -225,7 +225,7 @@ export default {
 
 **Ciao Vue Tinymce**將會在編輯器中插入圖片標籤
 
-假設上傳的response為**{ url: 'https://vuejs.org/images/logo.png' }**
+假設上傳的response為 **{ url: 'https://vuejs.org/images/logo.png' }**
 
 在預設的狀況下, **Ciao Vue Tinymce**將會建立一個預設的圖片標籤&lt;img src="https://vuejs.org/images/logo.png" /&gt;
 
