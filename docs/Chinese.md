@@ -250,7 +250,7 @@ export default {
 }
 ```
 
-**Full Example**
+**完整範例**
 ```html
 <template>
   <div>
@@ -300,23 +300,25 @@ export default {
 
 > String
 
-By default that, upload **FormData** filename will be **file** as follow
+在預設的情況下
+
+上傳的**FormData**檔案名稱為**file**(如下)
 
 ```javascript
 file.append('file', file)
 ```
 
-If you want custom this filename
+如果你希望自訂這個檔名
 
-You can config it by set this property
+你可以設定此參數
 
 ### config
 
-This option allow you replace any default tinymce config
+這個選項允許你替換任何預設的tinymce設定
 
-You can set any tinymce setting
+你可以自行設定任何tinymcy設定
 
-**Example**
+**範例**
 
 ```html
 <template>
@@ -339,15 +341,15 @@ export default {
 </script>
 ```
 
-## Event
+## 事件
 
 ### blur
 
-This event will be emitted when editor on blur
+這個事件將會在編輯器blur時被觸發
 
-And this event will pass editor content as an argument
+除此之外此事件還會傳遞一個編輯器內容的參數
 
-**Example(Template)**
+**範例(Template)**
 ```html
 <template>
   <div>
@@ -356,7 +358,7 @@ And this event will pass editor content as an argument
 </template>
 ```
 
-**Example(Script)**
+**範例(Script)**
 ```javascript
 export default {
   methods: {
@@ -369,11 +371,11 @@ export default {
 
 ### change
 
-This event will be emitted when editor on change
+這個事件將會在編輯器內容更動時被觸發
 
-And this event will pass editor content as an argument
+除此之外此事件還會傳遞一個編輯器內容的參數
 
-**Example(Template)**
+**範例(Template)**
 ```html
 <template>
   <div>
@@ -382,7 +384,7 @@ And this event will pass editor content as an argument
 </template>
 ```
 
-**Example(Script)**
+**範例(Script)**
 ```javascript
 export default {
   methods: {
@@ -395,11 +397,11 @@ export default {
 
 ### uploadSuccess
 
-This event will be emitted when **photoUploadRequest** resolve(success) Promise
+這個事件將會在**photoUploadRequest**resolve Promise時(上傳成功時)被觸發
 
-And this event will pass upload response result as an argument
+此外這個事件還會傳遞一個為response的result參數
 
-**Example(Template)**
+**範例(Template)**
 ```html
 <template>
   <div>
@@ -412,7 +414,7 @@ And this event will pass upload response result as an argument
 </template>
 ```
 
-**Example(Script)**
+**範例(Script)**
 ```javascript
 export default {
   methods: {
@@ -425,11 +427,11 @@ export default {
 
 ### uploadFail
 
-This event will be emitted when **photoUploadRequest** reject(error) Promise
+這個事件將會在**photoUploadRequest**reject Promise時(上傳失敗時)被觸發
 
-And this event will pass upload response error as an argument
+此外這個事件還會傳遞一個為response的error參數
 
-**Example(Template)**
+**範例(Template)**
 ```html
 <template>
   <div>
@@ -442,7 +444,7 @@ And this event will pass upload response error as an argument
 </template>
 ```
 
-**Example(Script)**
+**範例(Script)**
 ```javascript
 export default {
   methods: {

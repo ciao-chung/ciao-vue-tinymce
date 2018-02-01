@@ -4,6 +4,10 @@
 
 ![](https://github.com/ciao-chung/ciao-vue-tinymce/blob/master/static/photo/demo.gif?raw=true)
 
+## Chinese Documentation
+
+[Chinese Documentation](https://github.com/ciao-chung/ciao-vue-tinymce/blob/master/docs/Chinese.md)
+
 ## Feature
 
 * Easy for use just bind v-model
@@ -241,7 +245,7 @@ In this way, you can make image tag whatever you want
 ```javascript
 export default {
   methods: {
-    responseImage: function (result) {
+    resposneImage: function (result) {
       return `<img src="${result.url}" class="img-responsive" />`
     }
   },
@@ -254,7 +258,7 @@ export default {
   <div>
     <Tinymce
       :photoUploadRequest="uploadApi"
-      :photoUploadTag="responseImage"
+      :photoUploadTag="resposneImage"
       v-model="data"/>
   </div>
 </template>
@@ -268,7 +272,7 @@ export default {
     }
   },
   methods: {
-    responseImage: function (result) {
+    resposneImage: function (result) {
       return `<img src="${result.url}" class="img-responsive" />`
     }
   },
@@ -404,7 +408,7 @@ And this event will pass upload response result as an argument
     <Tinymce
       @uploadSuccess="onUploadSuccess"
       :photoUploadRequest="uploadApi"
-      :photoUploadTag="responseImage"
+      :photoUploadTag="resposneImage"
       v-model="data"/>
   </div>
 </template>
@@ -434,7 +438,7 @@ And this event will pass upload response error as an argument
     <Tinymce
       @uploadFail="uploadFail"
       :photoUploadRequest="uploadApi"
-      :photoUploadTag="responseImage"
+      :photoUploadTag="resposneImage"
       v-model="data"/>
   </div>
 </template>
