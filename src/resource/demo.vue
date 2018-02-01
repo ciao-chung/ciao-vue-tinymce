@@ -101,7 +101,6 @@ export default {
 }
 </script>
 
-
 <style src="bootstrap/dist/css/bootstrap.min.css"></style>
 <style src="tinymce/skins/lightgray/skin.min.css"></style>
 <style src="tinymce/skins/lightgray/content.min.css"></style>

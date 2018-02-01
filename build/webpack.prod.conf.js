@@ -27,6 +27,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     library: 'CiaoVueTinymce',
     libraryTarget: 'umd'
   },
+  externals: /^(jquery|uuid)/i,
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false }
