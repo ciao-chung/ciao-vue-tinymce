@@ -11,11 +11,6 @@
 * Can be photo upload and custom uploaded image tag
 * Can catch photo upload Event
 
-## Prerequisites
-
-* Vue app can load es6+
-* Vue app can load sass style 
-
 ## Installation
 
 > npm install ciao-vue-tinymce
@@ -50,6 +45,11 @@ export default {
   },
 }
 </script>
+
+<style src="bootstrap/dist/css/bootstrap.min.css"></style>
+<style src="tinymce/skins/lightgray/skin.min.css"></style>
+<style src="tinymce/skins/lightgray/content.min.css"></style>
+<style src="ciao-vue-tinymce/dist.css"></style>
 ```
 
 ## Property
