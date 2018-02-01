@@ -182,8 +182,6 @@
   }
 </script>
 
-<style src="tinymce/skins/lightgray/skin.min.css"></style>
-<style src="tinymce/skins/lightgray/content.min.css"></style>
 <style lang="sass" type="text/sass" scoped>
   div[ciao-vue-tinymce]
 </style>

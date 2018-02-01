@@ -96,7 +96,6 @@ export default {
 }
 </script>
 
-<style src="bootstrap/dist/css/bootstrap.min.css"></style>
 <style lang="sass" type="text/sass" scoped>
 div[ciao-vue-tinymce="photo-upload"]
   input[type="file"]

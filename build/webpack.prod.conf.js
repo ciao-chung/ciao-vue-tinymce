@@ -20,46 +20,27 @@ const webpackConfig = merge(baseWebpackConfig, {
     })
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
-  entry: 'components/Tinymce.vue',
+  entry: './src/index.js',
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('../js/build.js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('../ciao-vue-tinymce.js'),
+    library: 'CiaoVueTinymce',
+    libraryTarget: 'umd'
   },
   plugins: [
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    }),
+    new ExtractTextPlugin({
+      filename: 'ciao-vue-tinymce.css'
+    }),
+    new OptimizeCSSPlugin(),
+
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: config.build.productionSourceMap,
-      parallel: true
-    }),
-    // extract css into its own file
-    new ExtractTextPlugin({
-      filename: utils.assetsPath('../style/dist.css'),
-      // set the following option to `true` if you want to extract CSS from
-      // codesplit chunks into this main css file as well.
-      // This will result in *all* of your app's CSS being loaded upfront.
-      allChunks: false,
-    }),
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
-    new OptimizeCSSPlugin({
-      cssProcessorOptions: config.build.productionSourceMap
-      ? { safe: true, map: { inline: false } }
-      : { safe: true }
-    }),
-    
-    // keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),
-    // enable scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
-    // split vendor js into its own file
   ]
 })
 

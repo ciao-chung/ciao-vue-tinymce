@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Tinymce from 'src/../../index.js'
+import Tinymce from 'src/index.js'
 import $ from 'jquery'
 export default {
   data: function() {
@@ -101,6 +101,10 @@ export default {
 }
 </script>
 
+
+<style src="bootstrap/dist/css/bootstrap.min.css"></style>
+<style src="tinymce/skins/lightgray/skin.min.css"></style>
+<style src="tinymce/skins/lightgray/content.min.css"></style>
 <style lang="sass" type="sass/text" scoped>
 div[data-role="demo"]
   &>div
