@@ -1,29 +1,29 @@
 # Ciao Vue Tinymce
 
-> A Vue 2 Tinymce component
+> Vue 2 Tinymce元件
 
 ![](https://github.com/ciao-chung/ciao-vue-tinymce/blob/master/static/photo/demo.gif?raw=true)
 
-## Feature
+## 主要功能
 
-* Easy for use just bind v-model
-* Language can be customize
-* Can be photo upload and custom uploaded image tag
-* Can catch photo upload Event
+* 只要使用v-model就能綁定
+* 能夠自訂語言
+* 能夠使用圖片上傳, 以及自訂上傳後要插入的圖片標籤
+* 能夠取得圖片上傳的事件
 
-## Installation
+## 安裝
 
 > npm install ciao-vue-tinymce
 
-or yarn
+使用yarn
 
 > yarn add ciao-vue-tinymce
 
-## Base Usage
+## 基本使用方式
 
-Just use **v-model** bind value
+只要使用 **v-model** 綁定即可
 
-When editor on blur will auto sync v-model value
+當編輯器在blur時將會自動同步v-model的值
 
 ```html
 <template>
@@ -52,21 +52,21 @@ export default {
 <style src="ciao-vue-tinymce/dist/dist.css"></style>
 ```
 
-## Property
+## 屬性
 
 ### tools
 
 > Array
 
-By set this property, you can add multiple custom buttons to tinymce
+你能夠利用這個屬性將tinymce新增多個自訂的按鈕
 
-Via set a callback function for **onclick** property
+透過設定一個callback function給**onclick**屬性
 
-You will been given a **editor** argument
+你將能得到一個**editor**參數
 
-And use **tinymce editor instance**, by this **editor** argument
+並且利用這個**editor**參數才操作**tinymce編輯器實體**
 
-**Example**
+**範例**
 
 ```html
 <template>
@@ -107,19 +107,17 @@ export default {
 
 > String
 
-To specify language
+如果要指定語言必須設定此屬性
 
-Should set language code by this property 
- 
-The language code of tinymce can reference [this](https://www.tinymce.com/docs/configure/localization/#language)
+Tinymce的語言代碼可以參考[這裡](https://www.tinymce.com/docs/configure/localization/#language)
 
-When use language option
+當使用語言選項時
 
-You need download [Language Package](https://www.tinymce.com/download/language-packages/)
+你必須先下載[語系檔案](https://www.tinymce.com/download/language-packages/)
 
-And set [language_url](https://www.tinymce.com/docs/configure/localization/#language_url) for tinymce
+並且設定Tinymce的[language_url](https://www.tinymce.com/docs/configure/localization/#language_url)參數
 
-**Example**
+**範例**
 ```html
 <Tinymce v-model="data" :lanuage="'zh_TW'" :language="http://foo.bar/static/langs/zh_TW.js" />
 ```
@@ -128,17 +126,18 @@ And set [language_url](https://www.tinymce.com/docs/configure/localization/#lang
 
 > Function
 
-This property is a function type
+此屬性必須為Function格式
 
-And it should return a **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)**
+而且必須回傳一個**[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)**
 
-Because **Ciao Vue Tinymce** can make sure upload request is finished via use **[await](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/await)** in this way
+因為這樣才能讓**Ciao Vue Tinymce**透過[await](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/await)的方式
+
+確認上傳圖片的請求已經完成
 
 
+此外, 這個function必須給予**file**這個參數
 
-In addition, this function must given **file** argument
-
-Let request can send the file to upload
+讓上傳請求能夠上傳檔案
 
 **Example(Template)**
 ```html
@@ -204,13 +203,13 @@ export default {
 }
 ```
 
-If you don't want to custom **photoUploadTag** property
+如果你沒有要自訂**photoUploadTag**屬性
 
-Your upload photo response should be json format
+你的上傳圖片response必須是json格式
 
-And this json must been had **url** property
+而且這個json格式必須包含一個**url**屬性
 
-**Example(Upload Photo Response Data)**
+**範例(上傳圖片response資料格式)**
 ```javascript
 {
   url: 'https://vuejs.org/images/logo.png'
@@ -221,23 +220,26 @@ And this json must been had **url** property
 
 > Function
 
-After upload photo
 
-**Ciao Vue Tinymce** will insert image tag into editor
+在上傳完圖片後
 
-For example, if upload response is **{ url: 'https://vuejs.org/images/logo.png' }**
+**Ciao Vue Tinymce**將會在編輯器中插入圖片標籤
 
-By default, **Ciao Vue Tinymce** will create default image tag **&lt;img src="https://vuejs.org/images/logo.png" /&gt;**
+假設上傳的response為**{ url: 'https://vuejs.org/images/logo.png' }**
 
-If you want custom image tag
+在預設的狀況下, **Ciao Vue Tinymce**將會建立一個預設的圖片標籤**&lt;img src="https://vuejs.org/images/logo.png" /&gt;**
 
-You can replace it as follows
+如果你希望自訂這個標籤
 
-Just create a function and given a **result** argument(result is upload response)
+你可以依照下列方式自訂圖片標籤
 
-In this way, you can make image tag whatever you want
+只要建立一個function並且給予一個**result**參數(result就是上傳請求的response)
 
-**Example**
+透過這個方式
+
+你就能自訂任何你要的圖片標前
+
+**範例**
 ```javascript
 export default {
   methods: {
