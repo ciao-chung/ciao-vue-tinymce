@@ -23,7 +23,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   entry: './src/index.js',
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('../ciao-vue-tinymce.js'),
+    filename: 'dist/dist.js',
     library: 'CiaoVueTinymce',
     libraryTarget: 'umd'
   },
@@ -33,7 +33,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       compress: { warnings: false }
     }),
     new ExtractTextPlugin({
-      filename: 'ciao-vue-tinymce.css'
+      filename: 'dist/dist.css'
     }),
     new OptimizeCSSPlugin(),
 

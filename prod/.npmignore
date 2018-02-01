@@ -5,7 +5,6 @@ example/*
 example/.*
 .DS_Store
 node_modules/
-/dist/
 yarn-debug.log*
 yarn-error.log*
 /test/unit/coverage/
