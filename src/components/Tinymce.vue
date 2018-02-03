@@ -139,6 +139,7 @@ export default {
       for(const tool of this.tools) {
         this.editor.addButton(tool.toolbar, {
           text: tool.text,
+          image: tool.image,
           icon: tool.icon,
           onclick: () => tool.onclick(this.editor),
         })

@@ -54,7 +54,7 @@ export default {
         {
           toolbar: 'bar',
           text: 'bar',
-          icon: 'code',
+          image: 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-9/svg/logo-google.svg',
           onclick: (editor) => console.warn('onclick', editor)
         },
       ],

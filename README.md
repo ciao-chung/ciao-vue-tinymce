@@ -62,7 +62,7 @@ export default {
 
 > Array
 
-By set this property, you can add multiple custom buttons to tinymce
+By set this property, you can add multiple custom buttons to tinymce by [addButton](https://www.tinymce.com/docs/api/tinymce/tinymce.editor/#addbutton)
 
 Via set a callback function for **onclick** property
 
@@ -87,9 +87,16 @@ export default {
       data: null,
       tools: [
         {
+          toolbar: 'foo',
           text: 'foo',
           icon: 'image',
-          onclick: this.onFooButtonClick,
+          onclick: (editor) => console.warn('onclick', editor)
+        },
+        {
+          toolbar: 'bar',
+          text: 'bar',
+          image: 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-9/svg/logo-google.svg',
+          onclick: (editor) => console.warn('onclick', editor)
         },
       ]
     }

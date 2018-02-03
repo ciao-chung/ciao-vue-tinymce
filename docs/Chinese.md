@@ -58,7 +58,7 @@ export default {
 
 > Array
 
-你能夠利用這個屬性將tinymce新增多個自訂的按鈕
+你能夠利用這個屬性經由[addButton](https://www.tinymce.com/docs/api/tinymce/tinymce.editor/#addbutton)將tinymce新增多個自訂的按鈕
 
 透過設定一個callback function給**onclick**屬性
 
@@ -84,9 +84,16 @@ export default {
       data: null,
       tools: [
         {
+          toolbar: 'foo',
           text: 'foo',
           icon: 'image',
-          onclick: this.onFooButtonClick,
+          onclick: (editor) => console.warn('onclick', editor)
+        },
+        {
+          toolbar: 'bar',
+          text: 'bar',
+          image: 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-9/svg/logo-google.svg',
+          onclick: (editor) => console.warn('onclick', editor)
         },
       ]
     }
