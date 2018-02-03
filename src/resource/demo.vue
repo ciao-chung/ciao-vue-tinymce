@@ -46,10 +46,17 @@ export default {
       locale: 'zh_TW',
       tools: [
         {
+          toolbar: 'foo',
           text: 'foo',
           icon: 'image',
           onclick: (editor) => console.warn('onclick', editor)
-        }
+        },
+        {
+          toolbar: 'bar',
+          text: 'bar',
+          icon: 'code',
+          onclick: (editor) => console.warn('onclick', editor)
+        },
       ],
       config: {
         extended_valid_elements: 'img[width|height|id|class|src|uid|extension|version]',

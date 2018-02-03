@@ -137,7 +137,8 @@ export default {
       if(!this.tools) return
 
       for(const tool of this.tools) {
-        this.editor.addButton(tool.text, {
+        this.editor.addButton(tool.toolbar, {
+          text: tool.text,
           icon: tool.icon,
           onclick: () => tool.onclick(this.editor),
         })
@@ -162,10 +163,10 @@ export default {
       const default_toolbar = 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen | photoUploadButton'
       if(!this.tools) return default_toolbar
 
-      let custom = ''
+      let toolbar = default_toolbar
       for(const tool of this.tools)
-        custom += tool.text
-      return `${default_toolbar} | ${custom}`
+        toolbar = `${toolbar} | ${tool.toolbar}`
+      return toolbar
     },
   },
   watch: {
@@ -182,6 +183,6 @@ export default {
 }
 </script>
 
-<style lang="sass" type="text/sass" scoped>
-  div[ciao-vue-tinymce]
+<style lang="sass" type="text/sass">
+div[ciao-vue-tinymce]
 </style>
