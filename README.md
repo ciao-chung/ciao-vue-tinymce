@@ -75,7 +75,7 @@ And use **tinymce editor instance**, by this **editor** argument
 ```html
 <template>
   <div>
-    <Tinymce v-model="data"/>
+    <Tinymce v-model="data" :tools="tools"/>
   </div>
 </template>
 

@@ -72,7 +72,7 @@ export default {
 ```html
 <template>
   <div>
-    <Tinymce v-model="data"/>
+    <Tinymce v-model="data" :tools="tools"/>
   </div>
 </template>
 
