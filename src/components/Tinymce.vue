@@ -36,6 +36,7 @@ import 'tinymce/plugins/fullscreen/plugin'
 import 'tinymce/plugins/insertdatetime/plugin'
 import 'tinymce/plugins/contextmenu/plugin'
 import 'tinymce/plugins/textcolor/plugin'
+import 'tinymce/plugins/codesample/plugin'
 import 'prismjs'
 import uuidV4 from 'uuid/v4'
 import PhotoUpload from './PhotoUpload/PhotoUpload.vue'
@@ -127,18 +128,8 @@ export default {
       }
       tinymce.init(config)
     },
-    beforeInit: function () {
+    init: function() {
       this.destroy()
-
-      // check has need load codesample plugin
-      if(this.code) return import('tinymce/plugins/codesample/plugin')
-      return new Promise(resolve => resolve())
-    },
-    init: async function () {
-      await this.beforeInit()
-      this.initAction()
-    },
-    initAction: function() {
       this.setup()
       this.setContent()
     },
