@@ -18,6 +18,7 @@
           <Tinymce
             @uploadSuccess="uploadSuccess"
             @uploadFail="uploadFail"
+            :code="code"
             :config="config"
             :tools="tools"
             :photoUploadTag="photoUploadTag"
@@ -54,13 +55,9 @@ export default {
         {
           toolbar: 'bar',
           text: 'bar',
-          image: 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-9/svg/logo-google.svg',
           onclick: (editor) => console.warn('onclick', editor)
         },
       ],
-      config: {
-        extended_valid_elements: 'img[width|height|id|class|src|uid|extension|version]',
-      },
     }
   },
   methods: {
@@ -99,6 +96,27 @@ export default {
             })
           }, 1000)
         })
+      }
+    },
+    config: function () {
+      return {
+        extended_valid_elements: 'img[width|height|id|class|src|uid|extension|version]',
+      }
+    },
+    code: function () {
+      return {
+        css: `${window.location.origin}/static/codesample/prism.css`,
+        languages: [
+          {text: 'Bash', value: 'base'},
+          {text: 'HTML/XML', value: 'markup'},
+          {text: 'JavaScript', value: 'javascript'},
+          {text: 'JSON', value: 'json'},
+          {text: 'CSS', value: 'css'},
+          {text: 'SASS', value: 'sass'},
+          {text: 'PHP', value: 'php'},
+          {text: 'SQL', value: 'sql'},
+          {text: 'Markdown', value: 'markdown'},
+        ]
       }
     },
   },

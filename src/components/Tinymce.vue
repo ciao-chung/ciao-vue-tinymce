@@ -36,6 +36,7 @@ import 'tinymce/plugins/fullscreen/plugin'
 import 'tinymce/plugins/insertdatetime/plugin'
 import 'tinymce/plugins/contextmenu/plugin'
 import 'tinymce/plugins/textcolor/plugin'
+import 'prismjs'
 import uuidV4 from 'uuid/v4'
 import PhotoUpload from './PhotoUpload/PhotoUpload.vue'
 import $ from 'jquery'
@@ -73,6 +74,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    code: {
+      type: Object,
+      default: null,
+    },
   },
   data: function () {
     return {
@@ -91,12 +96,9 @@ export default {
         language: this.language,
         language_url: this.language_url,
         destroy: true,
-        plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table contextmenu paste code table',
-          'textcolor',
-        ],
+        plugins: this.plugins,
+        codesample_dialog_height: '500',
+        codesample_content_css: this.codeCss,
         toolbar: this.toolbar,
         menubar: false,
         setup: editor => {
@@ -125,8 +127,18 @@ export default {
       }
       tinymce.init(config)
     },
-    init: function() {
+    beforeInit: function () {
       this.destroy()
+
+      // check has need load codesample plugin
+      if(this.code) return import('tinymce/plugins/codesample/plugin')
+      return new Promise(resolve => resolve())
+    },
+    init: async function () {
+      await this.beforeInit()
+      this.initAction()
+    },
+    initAction: function() {
       this.setup()
       this.setContent()
     },
@@ -160,8 +172,23 @@ export default {
     hasFileBrowser: function () {
       return !!this.photoUploadRequest
     },
+    codeCss: function () {
+      if(!this.code) return null
+      return this.code.css
+    },
+    plugins: function () {
+      let default_plugin = [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table contextmenu paste code table',
+        'textcolor',
+      ]
+      if(this.code) default_plugin.push('codesample')
+      return default_plugin
+    },
     toolbar: function () {
-      const default_toolbar = 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen | photoUploadButton'
+      let default_toolbar = 'code | undo redo | insert | styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | fullscreen | photoUploadButton'
+      if(this.code) default_toolbar = `${default_toolbar} | codesample`
       if(!this.tools) return default_toolbar
 
       let toolbar = default_toolbar
@@ -185,5 +212,4 @@ export default {
 </script>
 
 <style lang="sass" type="text/sass">
-div[ciao-vue-tinymce]
 </style>
