@@ -100,6 +100,7 @@ export default {
         plugins: this.plugins,
         codesample_dialog_height: '500',
         codesample_content_css: this.codeCss,
+        codesample_languages: this.codeLanguages,
         toolbar: this.toolbar,
         menubar: false,
         setup: editor => {
@@ -166,6 +167,10 @@ export default {
     codeCss: function () {
       if(!this.code) return null
       return this.code.css
+    },
+    codeLanguages: function () {
+      if(!this.code) return null
+      return this.code.languages
     },
     plugins: function () {
       let default_plugin = [
