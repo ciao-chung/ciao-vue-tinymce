@@ -348,6 +348,84 @@ export default {
 </script>
 ```
 
+### code
+
+> Object
+
+If you wanna insert code sample into editor
+
+This option at least configure **css** to specify css style path
+
+That is, tinymce [codesample_content_css](https://www.tinymce.com/docs/plugins/codesample/#codesample_content_css) config
+
+```javascript
+{
+  css: `${window.location.origin}/static/tinymce/codesample/prism.css`,
+}
+```
+
+If you want custom dropdown list of code language
+
+You can custom by adding **languages** option
+
+```javascript
+{
+  css: `${window.location.origin}/static/tinymce/codesample/prism.css`,
+  languages: [
+    {text: 'Bash', value: 'base'},
+    {text: 'HTML/XML', value: 'markup'},
+    {text: 'JavaScript', value: 'javascript'},
+    {text: 'JSON', value: 'json'},
+    {text: 'CSS', value: 'css'},
+    {text: 'SASS', value: 'sass'},
+    {text: 'PHP', value: 'php'},
+    {text: 'SQL', value: 'sql'},
+    {text: 'Markdown', value: 'markdown'},
+  ]
+}
+```
+
+**Full Example**
+```html
+<template>
+  <div>
+    <Tinymce :code="code" v-model="data"/>
+  </div>
+</template>
+
+<script>
+import Tinymce from 'ciao-vue-tinymce'
+export default {
+  data: function() {
+    return {
+      data: null,
+    }
+  },
+  computed: {
+    code: function() {
+      return {
+        css: `${window.location.origin}/static/tinymce/codesample/prism.css`,
+        languages: [
+          {text: 'Bash', value: 'base'},
+          {text: 'HTML/XML', value: 'markup'},
+          {text: 'JavaScript', value: 'javascript'},
+          {text: 'JSON', value: 'json'},
+          {text: 'CSS', value: 'css'},
+          {text: 'SASS', value: 'sass'},
+          {text: 'PHP', value: 'php'},
+          {text: 'SQL', value: 'sql'},
+          {text: 'Markdown', value: 'markdown'},
+        ]
+      }
+    }
+  },
+  components: {
+    Tinymce,
+  },
+}
+</script>
+```
+
 ## Event
 
 ### blur

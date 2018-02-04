@@ -348,6 +348,84 @@ export default {
 </script>
 ```
 
+### code
+
+> Object
+
+如果你想在編輯器中加入程式碼範例
+
+此選項至少要設定**css**來指定css style的路徑
+
+也就是tinymce的[codesample_content_css](https://www.tinymce.com/docs/plugins/codesample/#codesample_content_css)設定
+
+```javascript
+{
+  css: `${window.location.origin}/static/tinymce/codesample/prism.css`,
+}
+```
+
+如果你自訂程式碼的語言下拉選單
+
+你可以加上**languages**選項來自訂
+
+```javascript
+{
+  css: `${window.location.origin}/static/tinymce/codesample/prism.css`,
+  languages: [
+    {text: 'Bash', value: 'base'},
+    {text: 'HTML/XML', value: 'markup'},
+    {text: 'JavaScript', value: 'javascript'},
+    {text: 'JSON', value: 'json'},
+    {text: 'CSS', value: 'css'},
+    {text: 'SASS', value: 'sass'},
+    {text: 'PHP', value: 'php'},
+    {text: 'SQL', value: 'sql'},
+    {text: 'Markdown', value: 'markdown'},
+  ]
+}
+```
+
+**完整範例**
+```html
+<template>
+  <div>
+    <Tinymce :code="code" v-model="data"/>
+  </div>
+</template>
+
+<script>
+import Tinymce from 'ciao-vue-tinymce'
+export default {
+  data: function() {
+    return {
+      data: null,
+    }
+  },
+  computed: {
+    code: function() {
+      return {
+        css: `${window.location.origin}/static/tinymce/codesample/prism.css`,
+        languages: [
+          {text: 'Bash', value: 'base'},
+          {text: 'HTML/XML', value: 'markup'},
+          {text: 'JavaScript', value: 'javascript'},
+          {text: 'JSON', value: 'json'},
+          {text: 'CSS', value: 'css'},
+          {text: 'SASS', value: 'sass'},
+          {text: 'PHP', value: 'php'},
+          {text: 'SQL', value: 'sql'},
+          {text: 'Markdown', value: 'markdown'},
+        ]
+      }
+    }
+  },
+  components: {
+    Tinymce,
+  },
+}
+</script>
+```
+
 ## 事件
 
 ### blur
