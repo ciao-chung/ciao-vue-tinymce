@@ -40,6 +40,7 @@
 <script>
 import Tinymce from 'src/index.js'
 import $ from 'jquery'
+window.$ = $
 export default {
   data: function() {
     return {

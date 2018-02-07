@@ -19,6 +19,15 @@
 
 > yarn add ciao-vue-tinymce
 
+## jQuery設定為全域
+
+在使用 **Ciao Vue Tinymce** 之前, 必須先將jQuery設定為全域
+
+```javascript
+import $ from 'jquery'
+window.$ = $
+```
+
 ## 基本使用方式
 
 只要使用 **v-model** 綁定即可

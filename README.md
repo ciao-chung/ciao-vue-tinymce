@@ -23,6 +23,15 @@ or yarn
 
 > yarn add ciao-vue-tinymce
 
+## Expose jQuery
+
+You must expose jquery before use **Ciao Vue Tinymce**
+
+```javascript
+import $ from 'jquery'
+window.$ = $
+```
+
 ## Base Usage
 
 Just use **v-model** bind value

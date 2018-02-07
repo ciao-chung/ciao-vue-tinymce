@@ -40,7 +40,6 @@ import 'tinymce/plugins/codesample/plugin'
 import 'prismjs'
 import uuidV4 from 'uuid/v4'
 import PhotoUpload from './PhotoUpload/PhotoUpload.vue'
-import $ from 'jquery'
 export default {
   props: {
     language: {
