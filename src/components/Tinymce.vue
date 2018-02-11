@@ -101,6 +101,7 @@ export default {
         codesample_content_css: this.codeCss,
         codesample_languages: this.codeLanguages,
         toolbar: this.toolbar,
+        init_instance_callback: this.setContent,
         menubar: false,
         setup: editor => {
           this.editor = editor
@@ -131,7 +132,6 @@ export default {
     init: function() {
       this.destroy()
       this.setup()
-      this.setContent()
     },
     update: function () {
       this.$emit('input', this.editor.getContent())

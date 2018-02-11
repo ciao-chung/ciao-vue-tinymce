@@ -99,7 +99,7 @@ export default {
           toolbar: 'foo',
           text: 'foo',
           icon: 'image',
-          onclick: (editor) => console.warn('onclick', editor)
+          onclick: (editor) => this.onFooButtonClick
         },
         {
           toolbar: 'bar',
