@@ -149,7 +149,11 @@ export default {
       }
     },
     setContent: function () {
-      if(!this.value) return
+      if(!this.value) {
+        tinymce.get(this.uuid).setContent('')
+        return
+      }
+
       try {
         tinymce.get(this.uuid).setContent(this.value)
       } catch (e) {
