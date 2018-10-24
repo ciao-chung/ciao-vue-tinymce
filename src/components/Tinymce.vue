@@ -42,6 +42,10 @@ import uuidV4 from 'uuid/v4'
 import PhotoUpload from './PhotoUpload/PhotoUpload.vue'
 export default {
   props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     language: {
       type: String,
       default: '',
@@ -90,6 +94,7 @@ export default {
   methods: {
     getDefaultConfig: function () {
       return {
+        readonly: this.disabled,
         selector: this.editorSelector,
         skin: false,
         min_height: 300,

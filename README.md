@@ -67,6 +67,12 @@ export default {
 
 ## Property
 
+### disabled
+
+> Boolean
+
+Setup disabled mode.
+
 ### tools
 
 > Array
